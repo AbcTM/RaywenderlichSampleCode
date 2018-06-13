@@ -691,6 +691,20 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <toolbar key="toolbar" implicitIdentifier="1C4A7849-E89E-40BD-9303-AA2213D2B055" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="GJc-Qr-W5u">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="B7EC8868-1598-4073-BA27-CF409FC38C75" label="Show List" paletteLabel="Show List" tag="1" image="list-selected-icon" id="Ga8-cj-PMR">
+                                    <connections>
+                                        <action selector="actionToggleListViewWithSender:" target="Oky-zY-oP4" id="SbQ-sP-0AD"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="kqk-tM-Bt5"/>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="kqk-tM-Bt5"/>
+                                <toolbarItem reference="Ga8-cj-PMR"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -708,11 +722,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="BookShop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="465" height="520"/>
+                        <rect key="frame" x="0.0" y="0.0" width="535" height="520"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YV4-SE-GvT">
-                                <rect key="frame" x="0.0" y="0.0" width="465" height="520"/>
+                                <rect key="frame" x="0.0" y="0.0" width="535" height="520"/>
                                 <subviews>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="178" horizontalPageScroll="10" verticalLineScroll="178" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2n-1y-ID8">
                                         <rect key="frame" x="0.0" y="0.0" width="180" height="520"/>
@@ -803,10 +817,10 @@
                                         </scroller>
                                     </scrollView>
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y0O-cb-HBg">
-                                        <rect key="frame" x="188" y="142" width="277" height="236"/>
+                                        <rect key="frame" x="188" y="142" width="347" height="236"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="20L-VD-nNT">
-                                                <rect key="frame" x="75" y="33" width="128" height="203"/>
+                                                <rect key="frame" x="110" y="33" width="128" height="203"/>
                                                 <subviews>
                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wDL-KL-gyW">
                                                         <rect key="frame" x="0.0" y="75" width="128" height="128"/>
@@ -925,11 +939,14 @@
                                                 </customSpacing>
                                             </stackView>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rzj-PT-8v0">
-                                                <rect key="frame" x="18" y="-7" width="241" height="32"/>
+                                                <rect key="frame" x="53" y="-7" width="241" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Buy now from raywenderlich.com" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DH4-AJ-gUV">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <action selector="actionBuySelectedBookWithSender:" target="XfG-lQ-9wD" id="a9r-jZ-74h"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -964,7 +981,8 @@
                     </view>
                     <connections>
                         <outlet property="coverImageView" destination="wDL-KL-gyW" id="nmQ-BW-Cde"/>
-                        <outlet property="editionTextFild" destination="TJg-Yc-PJC" id="Xx0-pd-kdt"/>
+                        <outlet property="editionTextField" destination="TJg-Yc-PJC" id="aNe-62-d8X"/>
+                        <outlet property="publisherTextField" destination="fT1-AY-F6J" id="CZD-5R-J2O"/>
                         <outlet property="tableView" destination="XIr-VC-1gr" id="oTZ-mL-6y5"/>
                         <outlet property="titleTextField" destination="A8Y-Ze-bEf" id="WDO-Us-Wdm"/>
                         <outlet property="topStack" destination="YV4-SE-GvT" id="NaB-Ca-7w3"/>
@@ -972,11 +990,12 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="121" y="641"/>
+            <point key="canvasLocation" x="75" y="937"/>
         </scene>
     </scenes>
     <resources>
         <image name="AppIcon" width="128" height="128"/>
         <image name="iAT_t" width="50.5" height="65.5"/>
+        <image name="list-selected-icon" width="24" height="24"/>
     </resources>
 </document>

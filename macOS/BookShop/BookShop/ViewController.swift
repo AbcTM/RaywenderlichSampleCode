@@ -13,12 +13,14 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var coverImageView: NSImageView!
     @IBOutlet weak var titleTextField: NSTextField!
-    @IBOutlet weak var editionTextFild: NSTextField!
+    @IBOutlet weak var editionTextField: NSTextField!
+    @IBOutlet weak var publisherTextField: NSTextField!
     
     // MARK: - life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        // 在main.storyboard window ViewController 添加toolbar, 并全部删除，添加image toolbar item（配置文字图片以及响应的方法）和flexible space toolbar item.并设置默认的items
         // 在main.storyboard设置tableview delegate和datasource
         // 在main.storyboard自定义tableview cell cell类型为text table cell View 删除NSTextField,自定义content
         // table view 在属性检查器取消勾选headers
@@ -35,7 +37,9 @@ class ViewController: NSViewController {
     
     let books = Book.all()
     
+    // toolbar item 响应时间
     @IBAction func actionToggleListView(sender: AnyObject) {
+        // 设置item状态
         if let button = sender as? NSToolbarItem {
             switch button.tag {
             case 0:
@@ -48,10 +52,11 @@ class ViewController: NSViewController {
             }
             
             //toggle the side bar visibility
+            // 动画组
             NSAnimationContext.runAnimationGroup({context in
                 context.duration = 0.25
                 context.allowsImplicitAnimation = true
-                
+                // 列表栏隐藏或者显示
                 self.topStack.arrangedSubviews.first!.isHidden = button.tag==0 ? true : false
                 self.view.layoutSubtreeIfNeeded()
                 
@@ -86,7 +91,8 @@ extension ViewController {
     func displayBookDetails(book: Book) {
         coverImageView.image = NSImage(named: NSImage.Name(rawValue: book.cover))
         titleTextField.stringValue = book.title
-        editionTextFild.stringValue = book.edition
+        editionTextField.stringValue = book.edition
+        publisherTextField.stringValue = book.cover
     }
     
     /// 点击购买事件
